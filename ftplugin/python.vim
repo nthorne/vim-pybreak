@@ -19,3 +19,20 @@
 "
 " You should have received a copy of the GNU General Public License
 " along with pybreak.  If not, see <http://www.gnu.org/licenses/>.
+
+
+" Only load this ftplugin once per buffer
+if exists("b:did_pybreak_plugin")
+  finish
+endif
+let b:did_pybreak_plugin = 1
+
+
+""" }}}
+""" keymappings {{{
+"""
+
+nnoremap <localleader>x :call pybreak#ToggleBreakpoint()<CR>
+
+
+""" }}}
