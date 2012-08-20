@@ -1,0 +1,41 @@
+*pybreak.txt*	Easy set_trace toggling for python
+		PYBREAK REFERENCE MANUAL~			
+
+================================================================================
+
+CONTENTS                                                       *PYBREAKContents*
+
+    1. installation..............|PYBREAKinstallation|
+    2. usage.....................|PYBREAKusage|
+    3. license...................|PYBREAKlicense|
+
+================================================================================
+
+
+1. installation                                            *PYBREAKinstallation*
+
+Prefered way of installing this plugin (as with any other script) is by 
+installing it as a git submodule, and loading it with pathogen (for pathogen
+installation instructions, please refer to https://github.com/tpope/vim-pathogen
+or http://www.vim.org/scripts/script.php?script_id=2332). When you have
+pathogen installed, installin pybreak is as simple as: >
+
+    git clone git://github.com/nthorne/vim-pybreak.git bundle/pybreak
+<
+
+================================================================================
+
+2. usage                                                          *PYBREAKusage*
+
+<localleader>d, where <localleader> defaults to \\, inserts a set_trace
+statement after the cursor position, if no statements are found on the current
+line. If, however, any set_trace statements (as inserted by pybreak) are found
+anywhere on the current line, they are removed, and no set_trace statements are
+inserted.
+
+================================================================================
+
+3. license                                                      *PYBREAKlicense*
+
+Copyright (C) 2012 Niklas Thörne. This plugin is distributed under the
+GNU General Public License version 3.
