@@ -23,7 +23,7 @@
 
 " function! ToggleBreakpoint() {{{
 "   Toggle python breakpoint at current position
-function! pydbg#ToggleBreakpoint()
+function! pybreak#ToggleBreakpoint()
   let l:breakpoint=';import pdb; pdb.set_trace();'
 
   let l:line=line('.')
