@@ -21,7 +21,7 @@ line. If, however, any set\_trace statements (as inserted by pybreak) are found
 anywhere on the current line, they are removed, and no set\_trace statements are
 inserted.
 
-License
+license
 -------
 Copyright (C) 2012 Niklas Thörne. This plugin is distributed under the
 GNU General Public License version 3.
