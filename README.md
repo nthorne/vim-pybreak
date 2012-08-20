@@ -15,7 +15,7 @@ pathogen installed, installin pybreak is as simple as:
 
 usage
 -----
-<localleader>d (<localleader> defaulting to `\\`) inserts a set\_trace statement
+\<localleader\>d (<localleader> defaulting to `\\`) inserts a set\_trace statement
 _after_ the cursor position, if no statements are found on the current line. If,
 however, any set\_trace statements (as inserted by pybreak) are found anywhere
 on the current line, they are removed, and no set\_trace statements are
