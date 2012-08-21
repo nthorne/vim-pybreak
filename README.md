@@ -9,7 +9,7 @@ Prefered way of installing this plugin (as with any other script) is by
 installing it as a git submodule, and loading it with pathogen (for pathogen
 installation instructions, please refer to https://github.com/tpope/vim-pathogen
 or http://www.vim.org/scripts/script.php?script\_id=2332). When you have
-pathogen installed, installin pybreak is as simple as:
+pathogen installed, installing pybreak is as simple as:
 
     git clone git://github.com/nthorne/vim-pybreak.git bundle/pybreak
 
