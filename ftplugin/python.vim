@@ -36,5 +36,9 @@ if !hasmapto('pybreak#ToggleBreakpoint')
   nnoremap <localleader>d :call pybreak#ToggleBreakpoint()<CR>
 endif
 
+if !hasmapto('pybreak#RemoveAllBreakpoints')
+  nnoremap <localleader>da :call pybreak#RemoveAllBreakpoints()<CR>
+endif
+
 
 """ }}}

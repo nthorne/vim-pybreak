@@ -31,7 +31,9 @@ pathogen installed, installin pybreak is as simple as: >
 statement after the cursor position, if no statements are found on the current
 line. If, however, any set_trace statements (as inserted by pybreak) are found
 anywhere on the current line, they are removed, and no set_trace statements are
-inserted.
+inserted. \<localleader\>da removes all set\_trace statements in the entire
+active buffer.
+
 
 ================================================================================
 

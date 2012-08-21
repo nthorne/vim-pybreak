@@ -20,27 +20,64 @@
 " You should have received a copy of the GNU General Public License
 " along with pybreak.  If not, see <http://www.gnu.org/licenses/>.
 
+let s:breakpoint=';import pdb; pdb.set_trace();'
+
 
 " function! ToggleBreakpoint() {{{
 "   Toggle python breakpoint at current position
-function! pybreak#ToggleBreakpoint()
-  let l:breakpoint=';import pdb; pdb.set_trace();'
-
+function! pybreak#ToggleSetTrace()
   let l:line=line('.')
-  let l:col=col('.')
   let l:current_line=getline(l:line)
 
-  if match(l:current_line, l:breakpoint) != -1
-    let l:current_line=substitute(l:current_line, l:breakpoint, '', '')
+  if match(l:current_line, s:breakpoint) != -1
+    " if the current line contained a set_trace statement, remove it..
+    let l:current_line=<SID>RemoveBreakpoint(l:current_line)
   else
+    let l:col=col('.')
+
+    " .. otherwise, split the current line in twain, at the cursor position..
     let l:fst_part=strpart(l:current_line, 0, l:col)
     let l:snd_part=strpart(l:current_line, l:col)
 
-    let l:current_line=l:fst_part.l:breakpoint.l:snd_part
+    " .. and insert the set_trace statement after the cursor position
+    let l:current_line=l:fst_part.s:breakpoint.l:snd_part
   endif
 
   call setline(l:line, l:current_line)
+endfunction
+" }}}
 
 
+" function! pybreak#RemoveAllBreakpoints() {{{
+"   Remove all dynamic breakpoints in the current buffer
+function! pybreak#RemoveAllBreakpoints()
+  let l:lineno = 1
+  
+  " for each line in the active buffer..
+  for l:line in getline(1, '$')
+    if !empty(l:line)
+      " .. if the line contains a set_trace statement..
+      if match(l:line, s:breakpoint) != -1
+        " .. remove it
+        let l:modified_line = <SID>RemoveBreakpoint(l:line)
+        call setline(l:lineno, l:modified_line)
+      endif
+    endif
+    let l:lineno += 1
+  endfor
+endfunction
+" }}}
+
+
+" function! RemoveBreakpoint() {{{
+"   Remove dynamic breakpoint(s) at a:line_str
+"
+" arguments:
+"   line_str  - the string value of the line from which breakpoints are to be
+"     removed
+" returns:
+"   a line with any dynamic breakpoints removed
+function! <SID>RemoveBreakpoint(line_str)
+  return substitute(a:line_str, s:breakpoint, '', '')
 endfunction
 " }}}

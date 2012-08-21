@@ -19,7 +19,8 @@ usage
 statement _after_ the cursor position, if no statements are found on the current
 line. If, however, any set\_trace statements (as inserted by pybreak) are found
 anywhere on the current line, they are removed, and no set\_trace statements are
-inserted.
+inserted. \<localleader\>da removes all set\_trace statements in the entire
+active buffer.
 
 license
 -------
