@@ -32,12 +32,12 @@ let b:did_pybreak_plugin = 1
 """ keymappings {{{
 """
 
-if !hasmapto('pybreak#ToggleBreakpoint')
-  nnoremap <localleader>d :call pybreak#ToggleBreakpoint()<CR>
+if !hasmapto('pybreak#ToggleSetTrace')
+  nnoremap <localleader>d :call pybreak#ToggleSetTrace()<CR>
 endif
 
-if !hasmapto('pybreak#RemoveAllBreakpoints')
-  nnoremap <localleader>da :call pybreak#RemoveAllBreakpoints()<CR>
+if !hasmapto('pybreak#RemoveAllSetTraces')
+  nnoremap <localleader>da :call pybreak#RemoveAllSetTraces()<CR>
 endif
 
 

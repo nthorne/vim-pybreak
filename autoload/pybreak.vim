@@ -20,18 +20,18 @@
 " You should have received a copy of the GNU General Public License
 " along with pybreak.  If not, see <http://www.gnu.org/licenses/>.
 
-let s:breakpoint=';import pdb; pdb.set_trace();'
+let s:set_trace=';import pdb; pdb.set_trace();'
 
 
-" function! ToggleBreakpoint() {{{
-"   Toggle python breakpoint at current position
+" function! ToggleSetTrace() {{{
+"   Toggle set_trace statements at current position
 function! pybreak#ToggleSetTrace()
   let l:line=line('.')
   let l:current_line=getline(l:line)
 
-  if match(l:current_line, s:breakpoint) != -1
+  if match(l:current_line, s:set_trace) != -1
     " if the current line contained a set_trace statement, remove it..
-    let l:current_line=<SID>RemoveBreakpoint(l:current_line)
+    let l:current_line=<SID>RemoveSetTrace(l:current_line)
   else
     let l:col=col('.')
 
@@ -40,7 +40,7 @@ function! pybreak#ToggleSetTrace()
     let l:snd_part=strpart(l:current_line, l:col)
 
     " .. and insert the set_trace statement after the cursor position
-    let l:current_line=l:fst_part.s:breakpoint.l:snd_part
+    let l:current_line=l:fst_part.s:set_trace.l:snd_part
   endif
 
   call setline(l:line, l:current_line)
@@ -48,18 +48,18 @@ endfunction
 " }}}
 
 
-" function! pybreak#RemoveAllBreakpoints() {{{
-"   Remove all dynamic breakpoints in the current buffer
-function! pybreak#RemoveAllBreakpoints()
+" function! pybreak#RemoveAllSetTraces() {{{
+"   Remove all set_trace statements in the current buffer
+function! pybreak#RemoveAllSetTraces()
   let l:lineno = 1
   
   " for each line in the active buffer..
   for l:line in getline(1, '$')
     if !empty(l:line)
       " .. if the line contains a set_trace statement..
-      if match(l:line, s:breakpoint) != -1
+      if match(l:line, s:set_trace) != -1
         " .. remove it
-        let l:modified_line = <SID>RemoveBreakpoint(l:line)
+        let l:modified_line = <SID>RemoveSetTrace(l:line)
         call setline(l:lineno, l:modified_line)
       endif
     endif
@@ -69,15 +69,15 @@ endfunction
 " }}}
 
 
-" function! RemoveBreakpoint() {{{
-"   Remove dynamic breakpoint(s) at a:line_str
+" function! RemoveSetTrace() {{{
+"   Remove set_trace statement(s) at a:line_str
 "
 " arguments:
-"   line_str  - the string value of the line from which breakpoints are to be
+"   line_str  - the string value of the line from which set_trace is to be
 "     removed
 " returns:
-"   a line with any dynamic breakpoints removed
-function! <SID>RemoveBreakpoint(line_str)
-  return substitute(a:line_str, s:breakpoint, '', '')
+"   a line with any set_trace statements removed
+function! <SID>RemoveSetTrace(line_str)
+  return substitute(a:line_str, s:set_trace, '', '')
 endfunction
 " }}}
