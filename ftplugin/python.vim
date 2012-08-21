@@ -34,6 +34,7 @@ let b:did_pybreak_plugin = 1
 
 if !hasmapto('pybreak#ToggleSetTrace')
   nnoremap <localleader>d :call pybreak#ToggleSetTrace()<CR>
+  nnoremap <localleader>de :call pybreak#ToggleSetTrace()<CR>:w<CR>:!/usr/bin/env python %<CR>
 endif
 
 if !hasmapto('pybreak#RemoveAllSetTraces')
