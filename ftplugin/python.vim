@@ -26,6 +26,10 @@ if exists("b:did_pybreak_plugin")
   finish
 endif
 let b:did_pybreak_plugin = 1
+if v:version < 700
+  echoerr "pybreak: This plugin has only been tested with vim >= 7. Please update"
+  finish
+endif
 
 
 """ }}}
