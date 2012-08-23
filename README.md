@@ -15,13 +15,15 @@ pathogen installed, installing pybreak is as simple as:
 
 usage
 -----
-\<localleader\>d, where \<localleader\> defaults to `\\`, inserts a set\_trace
-statement _after_ the cursor position, if no statements are found on the current
-line. If, however, any set\_trace statements (as inserted by pybreak) are found
-anywhere on the current line, they are removed, and no set\_trace statements are
-inserted. \<localleader\>da removes all set\_trace statements in the entire
-active buffer, and \<localleader\>de toggles set\_trace, writes the file and
-then executes the file with the python interpreter.
+* \<localleader\>d - inserts a set\_trace statement after the cursor position if
+  no statements (as inserted by pybreak) are found on the current line. _If_,
+  however, any set\_trace statements are found at the current line, they are
+  removed, and no further set\_trace statements are inserted.
+* \<localleader\>D - as \<localleader\>d, with the minor difference that this
+  keymapping inserts the set\_trace statement _at_ the cursor position.
+* \<localleader\>da - removes _all_ set\_trace statements in the active buffer
+* \<localleader\>de - toggles set\_trace (see \<localleader\>d), writes the
+  buffer to disk, and then executes the file with the python interpreter.
 
 license
 -------

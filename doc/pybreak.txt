@@ -11,7 +11,6 @@ CONTENTS                                                       *PYBREAKContents*
 
 ================================================================================
 
-
 1. installation                                            *PYBREAKinstallation*
 
 Prefered way of installing this plugin (as with any other script) is by 
@@ -27,15 +26,48 @@ pathogen installed, installing pybreak is as simple as: >
 
 2. usage                                                          *PYBREAKusage*
 
-<localleader>d, where <localleader> defaults to \\, inserts a set_trace
-statement after the cursor position, if no statements are found on the current
-line. If, however, any set_trace statements (as inserted by pybreak) are found
-anywhere on the current line, they are removed, and no set_trace statements are
-inserted. <localleader>da removes all set_trace statements in the entire
-active buffer, and <localleader>de toggles set_trace, writes the file and
-then executes the file with the python interpreter.
+<localleader>d....Toggles set_trace statement after cursor....|PYBREAK-d|
+<localleader>D....Toggles set_trace statement before cursor...|PYBREAK-D|
+<localleader>da...Removes all set_trace statements in buffer..|PYBREAK-da|
+<localleader>de...Toggles set_trace , writes and execs buffer.|PYBREAK-de|
 
+NOTE: <localleader> defaults to \\
 
+--------------------------------------------------------------------------------
+
+                                                                     *PYBREAK-d*
+Default key: <localleader>d
+
+Inserts a set_trace statement after the cursor position, if no such statement is
+found at the current line. If any set_trace statements (as inserted by pybreak)
+are found at the current line, they are removed, and no new set_trace statements
+are inserted.
+
+--------------------------------------------------------------------------------
+
+                                                                     *PYBREAK-D*
+
+Default key: <localleader>D
+
+As |PYBREAK-d|, with the minor difference that this mapping inserts the
+set_trace statement at the cursor position.
+
+--------------------------------------------------------------------------------
+
+                                                                    *PYBREAK-da*
+
+Default key: <localleader>da
+
+Removes all set_trace statements in the entire active buffer
+
+--------------------------------------------------------------------------------
+
+                                                                    *PYBREAK-de*
+
+Default key: <localleader>de
+
+Toggles set_trace at the current line (see |PYBREAK-d|), writes the buffer to
+disk, and executes the file with the python interpreter.
 
 ================================================================================
 
