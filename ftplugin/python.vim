@@ -38,6 +38,7 @@ endif
 
 if !hasmapto('pybreak#ToggleSetTrace')
   nnoremap <localleader>d :call pybreak#ToggleSetTrace()<CR>
+  nnoremap <localleader>D h:call pybreak#ToggleSetTrace()<CR>l
   nnoremap <localleader>de :call pybreak#ToggleSetTrace()<CR>:w<CR>:!/usr/bin/env python %<CR>
 endif
 
