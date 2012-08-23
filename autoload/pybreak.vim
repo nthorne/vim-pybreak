@@ -1,6 +1,6 @@
 " This file contains the main pybreak functions
 "
-" Last Change:  2012-08-21
+" Last Change:  2012-08-22
 " Maintainer:   Niklas Thörne  <notrupertthorne@gmail.com>
 "
 " License:      Copyright (C) 2012 Niklas Thörne
@@ -20,7 +20,7 @@
 " You should have received a copy of the GNU General Public License
 " along with pybreak.  If not, see <http://www.gnu.org/licenses/>.
 
-let s:set_trace=';import pdb; pdb.set_trace();'
+let s:set_trace='import pdb; pdb.set_trace();'
 
 
 " function! ToggleSetTrace() {{{
@@ -34,13 +34,8 @@ function! pybreak#ToggleSetTrace()
     let l:current_line=<SID>RemoveSetTrace(l:current_line)
   else
     let l:col=col('.')
-
-    " .. otherwise, split the current line in twain, at the cursor position..
-    let l:fst_part=strpart(l:current_line, 0, l:col)
-    let l:snd_part=strpart(l:current_line, l:col)
-
-    " .. and insert the set_trace statement after the cursor position
-    let l:current_line=l:fst_part.s:set_trace.l:snd_part
+    " .. and append the set_trace statement after the cursor position
+    let l:current_line = <SID>AppendSetTrace(l:col, l:current_line)
   endif
 
   call setline(l:line, l:current_line)
@@ -78,6 +73,34 @@ endfunction
 " returns:
 "   a line with any set_trace statements removed
 function! <SID>RemoveSetTrace(line_str)
-  return substitute(a:line_str, s:set_trace, '', '')
+  return substitute(a:line_str, ';\{0,1}'.s:set_trace, '', '')
 endfunction
 " }}}
+
+
+" function! AppendSetTrace() {{{
+"   Append set_trace statement after cursor position.
+"
+" arguments:
+"   col - the column after which set_trace statement is to be appended
+" returns:
+"   a line in which the set_trace statement has been injected 
+function! <SID>AppendSetTrace(col, line)
+    " .. otherwise, split the current line in twain, at the cursor position..
+    let l:fst_part=strpart(a:line, 0, a:col)
+    let l:snd_part=strpart(a:line, a:col)
+  
+    let l:line=l:fst_part
+
+    " if the part of the line to the left of the cursor contains any
+    " characters, we preceed the set_trace statement with a ';'
+    if match(l:line, '^\s*$') == -1
+      let l:line=l:line.';'
+    endif
+
+    let l:line=l:line.s:set_trace.l:snd_part
+
+    return l:line
+endfunction
+" }}}
+
